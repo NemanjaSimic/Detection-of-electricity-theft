@@ -1,0 +1,18 @@
+<!-- <input class="btn btn-primary" type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+<button class="btn btn-primary" (click)="predict()" *ngIf="records.length > 0">Predict</button> -->
+<div style="overflow-x:auto;height: 300px;">
+<table class="minimalistBlack" *ngIf="records.length > 0">
+    <thead>
+      <tr>
+        <th>Name </th>
+        <th>Time </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records;let i = index;" (click)="onClick(i)">
+        <td> <span>{{record.name}}</span> </td>
+        <td> <span>{{record.lastname}}</span> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
