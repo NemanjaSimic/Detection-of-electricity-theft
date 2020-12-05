@@ -22,6 +22,8 @@ namespace Clustering
 			// The generic MLContext.Data.LoadFromTextFile extension method infers the data set schema from the provided IrisData type and returns IDataView which can be used as input for transformers.
 			IDataView dataView = mlContext.Data.LoadFromTextFile<ConsumersData>(_dataPath, hasHeader: false, separatorChar: ',');
 
+			IDataView dataViewForAnomaly = mlContext.Data.LoadFromTextFile<ConsumersDataForAnomaly>(_dataPath, hasHeader: false, separatorChar: ','); 
+
 			//var feat = dataView.GetColumn<float[]>("HourValues").ToList();
 
 			// Create a learning pipeline
@@ -56,6 +58,22 @@ namespace Clustering
 			var prediction = predictor.Predict(TestConsumersData.Setosa);
 			Console.WriteLine($"Cluster: {prediction.PredictedClusterId}");
 			Console.WriteLine($"Distances: {string.Join(" ", prediction.Distances)}");
+
+
+			var transformedTestData = model.Transform(dataView);
+
+			// Convert IDataView object to a list.
+			var predictions = mlContext.Data.CreateEnumerable<ConsumersData>(
+				transformedTestData, reuseRowObject: false).ToList();
+
+			var metrics = mlContext.Clustering.Evaluate(
+				transformedTestData, "PredictedLabel", "Score", "Features");
+
+			// Print 5 predictions. Note that the label is only used as a comparison
+			// with the predicted label. It is not used during training.
+			foreach (var p in predictions.Take(2))
+			{
+			}
 		}
 
 		// Obsolete

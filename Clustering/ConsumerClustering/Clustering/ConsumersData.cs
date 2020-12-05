@@ -58,10 +58,16 @@ namespace Clustering
         public float Hour23;
     }
 
+    public class ConsumersDataForAnomaly
+    {
+        [LoadColumn(0, 23)]
+        public float[] HourValues;
+    }
+
     // The ClusterPrediction class represents the output of the clustering model applied to an IrisData instance.Use the ColumnName attribute to bind the PredictedClusterId and Distances fields to the PredictedLabel and Score columns respectively.In case of the clustering task those columns have the following meaning:
     // PredictedLabel column contains the ID of the predicted cluster.
     // Score column contains an array with squared Euclidean distances to the cluster centroids.The array length is equal to the number of clusters.
-    public class ClusterPrediction
+        public class ClusterPrediction
     {
         [ColumnName("PredictedLabel")]
         public uint PredictedClusterId;
