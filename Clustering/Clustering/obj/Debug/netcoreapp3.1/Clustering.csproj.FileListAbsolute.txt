@@ -1,0 +1,4 @@
+D:\KOD\TEST\InnovationDay2020\ConsoleApp1\Clustering\bin\Debug\netcoreapp3.1\Clustering.exe
+D:\KOD\TEST\InnovationDay2020\ConsoleApp1\Clustering\obj\Debug\netcoreapp3.1\Clustering.csprojAssemblyReference.cache
+D:\KOD\TEST\InnovationDay2020\ConsoleApp1\Clustering\obj\Debug\netcoreapp3.1\Clustering.AssemblyInfoInputs.cache
+D:\KOD\TEST\InnovationDay2020\ConsoleApp1\Clustering\obj\Debug\netcoreapp3.1\Clustering.AssemblyInfo.cs
