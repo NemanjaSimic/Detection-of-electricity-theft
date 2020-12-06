@@ -66,10 +66,12 @@ export class MapComponent implements AfterViewInit {
  
   }
 
-  placeMarker(lat :any, lon :any){
-    this.currentMarker = L.marker([lat, lon]).addTo(this.map)
-    .bindPopup("Ovo je kradljivac!!!")
+  placeMarker(data :any){
+    this.currentMarker = L.marker([data.coordinates[0], data.coordinates[1]]).addTo(this.map)
+    .bindPopup(`${data.streetNameNum[0]}, ${data.streetNameNum[1]}`)
     .openPopup();
+
+    this.map.panTo(new L.LatLng(data.coordinates[0], data.coordinates[1]));
   }
 
   update(data:any){
@@ -84,8 +86,8 @@ export class MapComponent implements AfterViewInit {
     {
       this.map.removeLayer(this.currentMarker);
     }
-    this.placeMarker(data.coordinates[0], data.coordinates[1]);
-    this.map.panTo(new L.LatLng(data.coordinates[0], data.coordinates[1]))
+    this.placeMarker(data);
+
   }
   
 }

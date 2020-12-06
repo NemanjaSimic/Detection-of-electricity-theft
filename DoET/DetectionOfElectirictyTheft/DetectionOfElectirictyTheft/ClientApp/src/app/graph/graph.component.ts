@@ -88,11 +88,15 @@ public processResults : ProcessingResult[] = [];
 			animationEnabled: true,
 			data: [{
 					type: "line",
-					dataPoints : dataPoints
+					dataPoints : dataPoints,
+					showInLegend : true,
+					legendText : "Average"  
       			},
    				{
       				type: "line",
-      				dataPoints : dataPoints
+					dataPoints : dataPoints,
+					showInLegend : true,
+					legendText : "Consumer"  
     			}]
 		});
 
