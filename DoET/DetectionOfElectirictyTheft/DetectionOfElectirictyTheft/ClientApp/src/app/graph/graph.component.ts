@@ -113,6 +113,34 @@ public processResults : ProcessingResult[] = [];
 	});
 	
 	this.chart.options.data[0].dataPoints = newPoints
+	let dataPoints2 = [
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		];
+
+	this.chart.options.data[1].dataPoints = dataPoints2
 	this.chart.render();
 	}
 
