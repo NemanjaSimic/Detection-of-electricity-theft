@@ -9,3 +9,10 @@ export class CSVRecord {
     public surname: any;
     public consumption: any;
   }
+
+  export class ProcessingResult{
+    public valuesByHour: [];
+    public coordinates: [];
+    public streetNameNum: [];
+    public isAvg: boolean;
+  }

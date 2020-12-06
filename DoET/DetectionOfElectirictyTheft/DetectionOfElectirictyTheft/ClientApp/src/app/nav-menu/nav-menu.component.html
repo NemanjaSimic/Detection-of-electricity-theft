@@ -1,9 +1,9 @@
-<header>
+<header style="opacity: 0.7;">
   <nav
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">DetectionOfElectirictyTheft</a>
+    <div class="container-fluid" style="width: 80%;">
+      <span class="navbar-brand" style=" color: rgb(59, 204, 90); font-size: 36px;"><b>Detection of Electiricty Theft</b></span>
       <button
         class="navbar-toggler"
         type="button"
@@ -13,29 +13,18 @@
         [attr.aria-expanded]="isExpanded"
         (click)="toggle()"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon">alooo</span>
       </button>
       <div
         class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+          <li class="nav-item" style="margin-right: 10px;">
+            <button (click)="aquire()" class="btn btn-outline-success btn-lg my-2 my-sm-0">Aquire data</button>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+          <li class="nav-item">
+            <button (click)="import()"  class="btn btn-outline-success btn-lg my-2 my-sm-0" style="margin-right: 10px;">Import data</button>
           </li>
         </ul>
       </div>

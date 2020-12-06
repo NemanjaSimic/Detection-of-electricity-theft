@@ -1,17 +1,18 @@
 <!-- <input class="btn btn-primary" type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
 <button class="btn btn-primary" (click)="predict()" *ngIf="records.length > 0">Predict</button> -->
-<div style="overflow-x:auto;height: 300px;">
-<table class="minimalistBlack" *ngIf="records.length > 0">
+<h3 style="text-align: center; color: rgb(59, 204, 90);">Suspicious consumers</h3>
+<div style="overflow-x:auto;height: 440px;">
+<table class="table table-striped table-dark">
     <thead>
       <tr>
-        <th>Name </th>
-        <th>Time </th>
+        <th>Street name </th>
+        <th>House number </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let record of records;let i = index;" (click)="onClick(i)">
-        <td> <span>{{record.name}}</span> </td>
-        <td> <span>{{record.lastname}}</span> </td>
+        <td> <span>{{record.streetNameNum[0]}}</span> </td>
+        <td> <span>{{record.streetNameNum[1]}}</span> </td>
       </tr>
     </tbody>
   </table>

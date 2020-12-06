@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import {CSVRecord} from '../../models/CSVModel';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EventEmitter } from 'protractor';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import {consumers} from '../../models/data,mock';
 
@@ -27,7 +26,12 @@ httpOptions = {
    }
 
   ngOnInit() {
-    this.records = consumers;
+    if (this.eventEmitterService.subsTable==undefined) {    
+      this.eventEmitterService.subsTable = this.eventEmitterService.    
+      invokeTable.subscribe((data:any) => {    
+        this.update(data);    
+      });   
+    } 
   }
 
   uploadListener($event: any): void {
@@ -58,6 +62,18 @@ httpOptions = {
       alert("Please import valid .csv file.");
       this.fileReset();
     }
+  }
+
+  update(data: any) {
+    this.records = data;
+    let avg;
+    data.forEach(element => {
+      if(element.isAvg)
+      {
+        this.eventEmitterService.onAvgInvoke(element.valuesByHour);
+        return;
+      }
+    });
   }
 
   getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) {

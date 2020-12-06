@@ -32,6 +32,54 @@ export const consumers = [
         "name" : "Pera",
         "lastname" : "Peric",
         "lat" : 45.239225,
+        "lon" : 45.239225
+    }, 
+    {
+        "name" : "Mika",
+        "lastname" : "Mikic",
+        "lat" : 45.246159,
+        "lon" : 19.851368
+    },
+    {
+        "name" : "Jovan",
+        "lastname" : "Jovanovic",
+        "lat" : 45.239225,
+        "lon" : 19.831301
+    },
+    {
+        "name" : "Janko",
+        "lastname" : "Jankovic",
+        "lat" : 45.254202,
+        "lon" : 19.861517
+    },
+    {
+        "name" : "Pera",
+        "lastname" : "Peric",
+        "lat" : 45.239225,
+        "lon" : 19.835457
+    }, 
+    {
+        "name" : "Mika",
+        "lastname" : "Mikic",
+        "lat" : 45.246159,
+        "lon" : 19.851368
+    },
+    {
+        "name" : "Jovan",
+        "lastname" : "Jovanovic",
+        "lat" : 45.239225,
+        "lon" : 19.831301
+    },
+    {
+        "name" : "Janko",
+        "lastname" : "Jankovic",
+        "lat" : 45.254202,
+        "lon" : 19.861517
+    },
+    {
+        "name" : "Pera",
+        "lastname" : "Peric",
+        "lat" : 45.239225,
         "lon" : 19.835457
     }, 
     {

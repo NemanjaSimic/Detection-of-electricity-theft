@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProcessingResult } from '../models/CSVModel';
+import { data } from '../models/data,mock';
 import { EventEmitterService } from '../services/event-emitter.service';
 import * as CanvasJS from './canvasjs.min';
 //var CanvasJS = require('canvasjs');
@@ -10,59 +12,117 @@ import * as CanvasJS from './canvasjs.min';
 })
 export class GraphComponent implements OnInit {
 private chart;
+private avg: any;
   constructor(private eventEmitterService: EventEmitterService) { }
-
+public processResults : ProcessingResult[] = [];
   ngOnInit() {
     if (this.eventEmitterService.subsVar==undefined) {    
       this.eventEmitterService.subsVar = this.eventEmitterService.    
       invokeGraph.subscribe((data:any) => {    
         this.update(data);    
-      });    
-    }    
+	  });    
+	}    
+	
+	if (this.eventEmitterService.subsAvg==undefined) {    
+		this.eventEmitterService.subsAvg = this.eventEmitterService.    
+		provideAvg.subscribe((data:any) => {    
+		  this.provideAvg(data);    
+		});    
+	  }   
+
     let dataPoints = [
-			{ y: 71 },
-			{ y: 55 },
-			{ y: 50 },
-			{ y: 65 },
-			{ y: 95 },
-			{ y: 68 },
-			{ y: 28 },
-			{ y: 34 },
-			{ y: 14 }
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
     ];
     
     let dataPoints2 = [
-			{ y: 81 },
-			{ y: 65 },
-			{ y: 60 },
-			{ y: 85 },
-			{ y: 105 },
-			{ y: 78 },
-			{ y: 38 },
-			{ y: 44 },
-			{ y: 34 }
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
+		{ y: 0 },
 		];
 		
 		this.chart = new CanvasJS.Chart("chartContainer",{
 			animationEnabled: true,
-			title:{
-				text: "Statistika potrosaca"
-			},
 			data: [{
-				type: "line",
-				dataPoints : dataPoints
-      },
-    {
-      type: "line",
-      dataPoints : dataPoints2
-    }]
+					type: "line",
+					dataPoints : dataPoints
+      			},
+   				{
+      				type: "line",
+      				dataPoints : dataPoints
+    			}]
 		});
-		this.chart.render();
+
+		this.chart.render(); 
       
   }
+	provideAvg(data: any) {
+		this.avg = data;
 
-  update(data:any){
+		
+	let newPoints = [];
+	data.forEach(element => {
+		newPoints.push({y: element})
+	});
+	
+	this.chart.options.data[0].dataPoints = newPoints
+	this.chart.render();
+	}
+
+  update(newData:any){
     console.log("from graph:");
-    console.log(data);
+	console.log(newData);
+	this.processResults = newData;
+
+	let newPoints = [];
+	newData.valuesByHour.forEach(element => {
+		newPoints.push({y: element})
+	});
+	
+	this.chart.options.data[1].dataPoints = newPoints
+	this.chart.render();
   }
 }

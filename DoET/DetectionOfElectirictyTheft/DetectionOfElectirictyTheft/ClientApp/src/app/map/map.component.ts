@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import 'mapbox-gl-leaflet';
+import { ProcessingResult } from '../models/CSVModel';
 import { EventEmitterService } from '../services/event-emitter.service';
 import {MarkerService} from '../services/marker.service';
 
@@ -29,6 +30,9 @@ export class MapComponent implements AfterViewInit {
   private map: L.Map;
   @ViewChild('map', {static: true})
   private mapContainer: ElementRef<HTMLElement>;
+  processResults: ProcessingResult[] = [];
+  show: boolean = false;
+  currentMarker;
   constructor(private eventEmitterService: EventEmitterService) {
 
    }
@@ -43,8 +47,7 @@ export class MapComponent implements AfterViewInit {
         this.update(data);    
       });    
     }    
-
-   this.initMap();
+    this.initMap();
    //this.placeMarker(45.239233, 19.835452);
   }
 
@@ -55,16 +58,16 @@ export class MapComponent implements AfterViewInit {
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',  {
-  maxZoom: 19,
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  });
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
 
-  tiles.addTo(this.map);
+    tiles.addTo(this.map);
  
   }
 
   placeMarker(lat :any, lon :any){
-    L.marker([lat, lon]).addTo(this.map)
+    this.currentMarker = L.marker([lat, lon]).addTo(this.map)
     .bindPopup("Ovo je kradljivac!!!")
     .openPopup();
   }
@@ -72,7 +75,17 @@ export class MapComponent implements AfterViewInit {
   update(data:any){
     console.log("from map:");
     console.log(data);
-    this.placeMarker(data.lat, data.lon);
+    if(this.show == false)
+    {
+        this.show = true;
+        
+    }
+    if(this.currentMarker != undefined)
+    {
+      this.map.removeLayer(this.currentMarker);
+    }
+    this.placeMarker(data.coordinates[0], data.coordinates[1]);
+    this.map.panTo(new L.LatLng(data.coordinates[0], data.coordinates[1]))
   }
   
 }
